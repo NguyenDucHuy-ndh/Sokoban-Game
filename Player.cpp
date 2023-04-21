@@ -5,6 +5,7 @@ Player::Player(Game* g)
 {
 	game = g;
 	texture = game->LoadTexture("image/player.png");
+
 	pos.x = 0;
 	pos.y = 0;
 	posRect = { pos.x, pos.y, TILE_SIZE, TILE_SIZE };
@@ -13,8 +14,16 @@ Player::Player(Game* g)
 
 void Player::Move(int x, int y)
 {
-	pos.x += x;
-	pos.y += y;
+	int newPlayerX = pos.x + x;
+	int newPlayerY = pos.y + y;
+
+	if (game->HitWall(newPlayerX, newPlayerY))
+	{
+		return;
+	}
+
+	pos.x = newPlayerX;
+	pos.y = newPlayerY;
 
 	posRect.x = pos.x * TILE_SIZE;
 	posRect.y = pos.y * TILE_SIZE;

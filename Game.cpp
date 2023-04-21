@@ -15,6 +15,7 @@ bool Game::Init()
 	}
 
 	window = SDL_CreateWindow("SOKOBAN", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
+
 	if (!window)
 	{
 		cout << "Window failed to initialize: " << SDL_GetError() << endl;
@@ -22,6 +23,7 @@ bool Game::Init()
 	}
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
 	if (!renderer)
 	{
 		cout << "Renderer failed to initialize: " << SDL_GetError() << endl;
@@ -35,6 +37,17 @@ bool Game::Init()
 	groundTexture = LoadTexture("image/ground.png");
 
 	player = new Player(this);
+	   
+	for (int r = 0; r < TILE_ROWS; r++)
+	{
+		for (int c = 0; c < TILE_COLS; c++)
+		{
+			if (levelManager->levelMap[c][r] == 'p')
+			{
+				player->Move(c, r);
+			}
+		}
+	}
 
 	return true;
 }
@@ -59,28 +72,29 @@ void Game::HandleEvents()
 		{
 			isRunning = false;
 		}
-	}
-
-	if (event.type == SDL_KEYDOWN)
-	{
-		switch (event.key.keysym.sym)
+		
+		if (event.type == SDL_KEYDOWN)
 		{
-		case SDLK_RIGHT:
-			player->Move(1, 0);
-			break;
-		case SDLK_LEFT:
-			player->Move(-1, 0);
-			break;
-		case SDLK_DOWN:
-			player->Move(0, 1);
-			break;
-		case SDLK_UP:
-			player->Move(0, -1);
-			break;
-		default:
-			break;
+			switch (event.key.keysym.sym)
+			{
+			case SDLK_RIGHT:
+				player->Move(1, 0);
+				break;
+			case SDLK_LEFT:
+				player->Move(-1, 0);
+				break;
+			case SDLK_DOWN:
+				player->Move(0, 1);
+				break;
+			case SDLK_UP:
+				player->Move(0, -1);
+				break;
+			default:
+				break;
+			}
 		}
 	}
+
 
 	const Uint8* keystates = SDL_GetKeyboardState(NULL);
 
@@ -100,7 +114,6 @@ void Game::Draw()
 	SDL_SetRenderDrawColor(renderer, 40, 40, 40, 255);
 	SDL_RenderClear(renderer);
 
-	player->Draw(renderer);
 
 	for (int r = 0; r < TILE_ROWS; r++)
 	{
@@ -152,4 +165,9 @@ SDL_Texture* Game::LoadTexture(string path)
 	SDL_FreeSurface(tempSurface);
 
 	return newTexture;
+}
+
+bool Game::HitWall(int x, int y)
+{
+	return levelManager->levelMap[x][y] == 'x';
 }

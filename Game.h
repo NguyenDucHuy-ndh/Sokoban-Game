@@ -12,6 +12,7 @@ public:
 	void Shutdown();
 
 	SDL_Texture* LoadTexture(string path);
+	bool HitWall(int x, int y);
 
 private:
 	void HandleEvents();
@@ -29,4 +30,5 @@ private:
 
 	class Player* player;
 };
+
 
