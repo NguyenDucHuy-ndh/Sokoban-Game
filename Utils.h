@@ -3,10 +3,15 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <iostream>
-
+#include <SDL_ttf.h>
 
 using namespace std;
 
+struct Vec2
+{
+	int x;
+	int y;
+};
 
 const int TILE_SIZE = 64;
 const int TILE_COLS = 10;

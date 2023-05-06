@@ -1,12 +1,14 @@
 #include "LevelManager.h"
 
 
-void LevelManager::LoadLevel(string file)
+void LevelManager::LoadLevel()
 {
 	int rowCount = 0;
 	int colCount = 0;
 
-	levelFile.open(file);
+	string path = "Levels/level" + to_string(currentLevel) + ".txt";
+
+	levelFile.open(path);
 	if (levelFile.is_open())
 	{
 		char inChar;
@@ -24,6 +26,10 @@ void LevelManager::LoadLevel(string file)
 			}
 		}
 	}
+	levelFile.close();
 
+}
 
+void LevelManager::UpdateLevel() {
+	currentLevel++;
 }
