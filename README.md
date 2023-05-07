@@ -17,8 +17,8 @@
  _Play_ : Start game
  _Exit_ : Quit game
 * Use the up and down keys to bring the box to the correct position
- ← : Move left
- → : Move right
- ↑ : Move up
- ↓ : Move down
+ > ← : Move left
+ > → : Move right
+ > ↑ : Move up
+ > ↓ : Move down
 * Press *Esc* to exit the game
