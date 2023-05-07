@@ -11,7 +11,14 @@
 * Setting Library SDL2.
 * Integrated Development Environment: Visual Studio 2022.
 
-## Play Guide
+## How to play
 
+* On the menu
+ _Play_ : Start game
+ _Exit_ : Quit game
 * Use the up and down keys to bring the box to the correct position
-* Press Esc to exit the game
+ ← : Move left
+ → : Move right
+ ↑ : Move up
+ ↓ : Move down
+* Press *Esc* to exit the game
