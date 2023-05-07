@@ -8,10 +8,10 @@
 
 ## Requirement
 
-> Setting Library SDL2.
-> Integrated Development Environment: Visual Studio 2022.
+* Setting Library SDL2.
+* Integrated Development Environment: Visual Studio 2022.
 
 ## Play Guide
 
-Use the up and down keys to bring the box to the correct position
-Press Esc to exit the game
+* Use the up and down keys to bring the box to the correct position
+* Press Esc to exit the game
