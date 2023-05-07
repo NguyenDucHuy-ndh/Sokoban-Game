@@ -1,7 +1,2 @@
-﻿  Box.cpp
-  Game.cpp
-  LevelManager.cpp
-  Player.cpp
-  Source.cpp
-  Generating Code...
+﻿  Game.cpp
   Sokoban.vcxproj -> D:\GameDev\Games\Sokoban\x64\Debug\Sokoban.exe

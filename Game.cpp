@@ -19,6 +19,10 @@ bool Game::Init()
 		return false;
 	}
 
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
+	{
+		return false;
+	}
 
 	window = SDL_CreateWindow("SOKOBAN", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
 
@@ -55,6 +59,8 @@ bool Game::Init()
 
 	// tai font
 	TTF_Font* font = TTF_OpenFont("Text/font.ttf", 32);
+
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
 	player = new Player(this);
 	   
@@ -127,7 +133,7 @@ void Game::HandleEvents()
 
 void Game::Update()
 {
-
+	
 
 }
 
@@ -183,6 +189,10 @@ void Game::Shutdown()
 	SDL_DestroyTexture(textTexture);
 	TTF_CloseFont(font);
 	TTF_Quit();
+
+	Mix_FreeMusic(bgMusic);
+	bgMusic = nullptr;
+	Mix_CloseAudio();
 
 	IMG_Quit();
 	SDL_Quit();
@@ -350,6 +360,7 @@ void Game::DrawMenu()
 					mouseY >= playRect.y && mouseY <= playRect.y + playRect.h)
 				{
 					isRunning = true;
+					Music();
 					break;
 				}
 				else if (mouseX >= quitRect.x && mouseX <= quitRect.x + quitRect.w &&
@@ -425,11 +436,21 @@ void Game::DrawMenu_2()
 				else if (mouseX >= quitRect.x && mouseX <= quitRect.x + quitRect.w &&
 					mouseY >= quitRect.y && mouseY <= quitRect.y + quitRect.h)
 				{
-
 					isRunning = false;
 					break;
 				}
 			}
 		}
 	}
+}
+
+void Game::Music()
+{
+
+	// tai file am thanh
+	bgMusic = Mix_LoadMUS("Sound/bg_music.mp3");
+
+	// phat am thanh vo han lan
+	Mix_PlayMusic(bgMusic, -1);
+
 }

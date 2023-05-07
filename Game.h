@@ -37,6 +37,8 @@ private:
 	void DrawMenu();
 	void DrawMenu_2();
 
+	void Music();
+
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 	SDL_Texture* wallTexture = nullptr;
@@ -55,6 +57,8 @@ private:
 	SDL_Color textColor;
 
 	int upLevel = 0;
+
+	Mix_Music* bgMusic = nullptr;
 
 	SDL_Texture* startTexture = nullptr;
 
